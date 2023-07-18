@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Group } from "../types/Group";
+import GroupList from "./components/GroupList";
+import "./App.css";
 
 function App() {
+  const task1 = {
+    name: "tasks1",
+    isCompleted: false,
+  };
+
+  const task2 = {
+    name: "tasks2",
+    isCompleted: false,
+  };
+
+  const exampleGroup = {
+    name: "test",
+    tasks: [task1, task2],
+    isCompleted: false,
+  };
+
+  const [groups, setGroups] = useState([exampleGroup]);
+  // const [tasks, setTasks] = useState([]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {groups && groups.map((group) => <GroupList group={group} />)}
     </div>
   );
 }
